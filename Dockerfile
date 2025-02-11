@@ -6,9 +6,9 @@ WORKDIR /app
 # Install dependencies (this step is cached as long as the dependencies don't change)
 COPY package.json pnpm-lock.yaml ./
 
-# Install Corepack (if needed) and enable it
+# Install Corepack (if needed) and enable it, ensuring a compatible version
 RUN if ! command -v corepack &> /dev/null; then \
-      npm install -g corepack; \
+      npm install -g corepack@latest; \ # Install the latest corepack
     fi && \
     corepack enable --no-cache
 
