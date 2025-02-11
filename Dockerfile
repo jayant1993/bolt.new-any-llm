@@ -6,6 +6,12 @@ WORKDIR /app
 # Install dependencies (this step is cached as long as the dependencies don't change)
 COPY package.json pnpm-lock.yaml ./
 
+# Install Corepack (if needed) and enable it
+RUN if ! command -v corepack &> /dev/null; then \
+      npm install -g corepack; \
+    fi && \
+    corepack enable --no-cache
+
 RUN corepack disable pnpm && corepack enable pnpm --no-cache && pnpm install
 
 # Copy the rest of your app's source code
