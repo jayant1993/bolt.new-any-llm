@@ -10,9 +10,9 @@ COPY package.json pnpm-lock.yaml ./
 RUN if ! command -v corepack &> /dev/null; then \
       npm install -g corepack@latest; \
     fi && \
-    corepack enable --no-cache
+    corepack enable
 
-RUN corepack disable pnpm && corepack enable pnpm --no-cache && pnpm install
+RUN corepack disable pnpm && corepack enable pnpm && pnpm install
 
 # Copy the rest of your app's source code
 COPY . .
