@@ -8,7 +8,7 @@ COPY package.json pnpm-lock.yaml ./
 
 # Install Corepack (if needed) and enable it, ensuring a compatible version
 RUN if ! command -v corepack &> /dev/null; then \
-      npm install -g corepack@latest; \ # Install the latest corepack
+      npm install -g corepack@latest; \
     fi && \
     corepack enable --no-cache
 
@@ -36,7 +36,7 @@ ARG DEFAULT_NUM_CTX
 
 ENV WRANGLER_SEND_METRICS=false \
     GROQ_API_KEY=${GROQ_API_KEY} \
-    HuggingFace_KEY=${HuggingFace_API_KEY} \
+    HuggingFace_API_KEY=${HuggingFace_API_KEY} \
     OPENAI_API_KEY=${OPENAI_API_KEY} \
     ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY} \
     OPEN_ROUTER_API_KEY=${OPEN_ROUTER_API_KEY} \
@@ -58,7 +58,7 @@ FROM base AS bolt-ai-development
 
 # Define the same environment variables for development
 ARG GROQ_API_KEY
-ARG HuggingFace 
+ARG HuggingFace_API_KEY
 ARG OPENAI_API_KEY
 ARG ANTHROPIC_API_KEY
 ARG OPEN_ROUTER_API_KEY
